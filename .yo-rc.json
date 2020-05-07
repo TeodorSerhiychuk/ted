@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.serhiychuk.imdb"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "imdb",
+    "packageName": "com.serhiychuk.imdb",
+    "packageFolder": "com/serhiychuk/imdb",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MmQyOGQ3ODI0MTc0OTBmNGViNWUzNDcxNTExNGQyMDZiYTJkMzhlYjQyZThlZTY4NGU5ODg5YWMyZjg4YjRmYThjYjc5YzBjMTI1MDJmMjdhNDNkYzYzYzY1ZjU2MjkyYmJlZTMzMzY4YjlmOWFiOGQ3ZGNlOGQ2ZDFjODI4YTM=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "cerulean",
+    "clientThemeVariant": "dark",
+    "creationTimestamp": 1588888918658,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
