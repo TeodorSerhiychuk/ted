@@ -1,0 +1,61 @@
+entity Actor {
+	id Long
+    name String required maxlength(100)
+    surname String required maxlength(100)
+   	bio String
+   	photoURL String
+}
+
+entity Role {
+	id Long
+    characterName String
+    characterDescription String
+}
+
+entity Series {
+	id Long
+    title String
+    description String
+    rating Double
+}
+
+entity Episode {
+	id Long
+    title String
+    description String
+    date ZonedDateTime
+}
+
+entity Producer {
+	id Long
+    name String required maxlength(100)
+    surname String required maxlength(100)
+   	bio String
+   	photoURL String
+}
+
+entity Movie {
+	id Long
+    name String
+    description String
+    country String
+    releaseDate ZonedDateTime
+    income Integer
+    rating Double
+}
+
+relationship OneToMany {
+    Actor{roles} to Role{actor}
+    Series{episodes} to Episode{series}
+    Producer{episodes} to Episode{createdBy}
+    Producer{movies} to Movie{createdBy}
+}
+
+relationship ManyToMany {
+	Actor{movies} to Movie{actors}
+    Actor{episodes} to Episode{actors}
+}
+
+filter all 
+paginate all with infinite-scroll
+service all with serviceImpl

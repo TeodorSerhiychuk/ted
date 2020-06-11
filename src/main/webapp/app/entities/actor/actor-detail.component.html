@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="actor">
+            <h2><span>Actor</span> {{ actor.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{ actor.name }}</span>
+                </dd>
+                <dt><span>Surname</span></dt>
+                <dd>
+                    <span>{{ actor.surname }}</span>
+                </dd>
+                <dt><span>Bio</span></dt>
+                <dd>
+                    <span>{{ actor.bio }}</span>
+                </dd>
+                <dt><span>Photo URL</span></dt>
+                <dd>
+                    <span>{{ actor.photoURL }}</span>
+                </dd>
+                <dt><span>Movies</span></dt>
+                <dd>
+                    <span *ngFor="let movies of actor.movies; let last = last">
+                        <a [routerLink]="['/movie', movies?.id, 'view']">{{ movies.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span>Episodes</span></dt>
+                <dd>
+                    <span *ngFor="let episodes of actor.episodes; let last = last">
+                        <a [routerLink]="['/episode', episodes?.id, 'view']">{{ episodes.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/actor', actor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

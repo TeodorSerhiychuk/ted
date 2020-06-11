@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span>Movies</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-movie" [routerLink]="['/movie/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Movie
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="movies?.length === 0">
+        <span>No movies found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="movies?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span>Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="country"><span>Country</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="releaseDate"><span>Release Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="income"><span>Income</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="rating"><span>Rating</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdBy.id"><span>Created By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let movie of movies ;trackBy: trackId">
+                    <td><a [routerLink]="['/movie', movie.id, 'view']">{{ movie.id }}</a></td>
+                    <td>{{ movie.name }}</td>
+                    <td>{{ movie.description }}</td>
+                    <td>{{ movie.country }}</td>
+                    <td>{{ movie.releaseDate | date:'medium' }}</td>
+                    <td>{{ movie.income }}</td>
+                    <td>{{ movie.rating }}</td>
+                    <td>
+                        <div *ngIf="movie.createdBy">
+                            <a [routerLink]="['/producer', movie.createdBy?.id, 'view']" >{{ movie.createdBy?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/movie', movie.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/movie', movie.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(movie)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

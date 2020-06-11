@@ -1,0 +1,56 @@
+{
+    "name": "Producer",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldName": "surname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldName": "bio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "photoURL",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "episode",
+            "otherEntityRelationshipName": "createdBy",
+            "relationshipName": "episodes"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "movie",
+            "otherEntityRelationshipName": "createdBy",
+            "relationshipName": "movies"
+        }
+    ],
+    "changelogDate": "20200507224100",
+    "entityTableName": "producer",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
